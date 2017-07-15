@@ -38,7 +38,7 @@ class Api
             $result = new WrongParamsResponse();
         } else {
             try {
-                $objects = $this->storage->getTableData($params);
+                $objects = $this->storage->getTableObjects($params);
                 $result = new TableResponse($objects);
             } catch (\PDOException $exception) {
                 $result = new WrongParamsValuesResponse();

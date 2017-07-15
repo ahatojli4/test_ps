@@ -32,10 +32,12 @@ class PdoStorage
     }
 
     /**
+     * Этот метод можно оптимизировать, разбив его на несколько разных,
+     * чтобы 1 запросом выбирать и лекции и спикеров, а другим пользователей.
      * @param array $params $_POST array
      * @return Element[]
      */
-    public function getTableData($params)
+    public function getTableObjects($params)
     {
         $sqlString = 'SELECT * FROM ' . $this->accessTables[$params['table']];
         $inputParameters = null;
@@ -103,6 +105,11 @@ class PdoStorage
 
 
     /**
+     * Этот метод можно оптимизировать, например, изменив схему таблицы, сделав поля
+     * UserId SessionId таблицы SessionSpeakers внешними ключами для таблиц Session
+     * и Users. Это позволит в данной реализации убрать запрос на существование пользователя.
+     * Также, если наложить ограничение, что у лекции должен быть хотя бы 1 спикер, то
+     * можно выбрать необходимые нам данные за 1 запрос, а за второй запрос сделать INSERT
      * @param array $params $_POST array
      * @return array
      */
