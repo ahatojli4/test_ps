@@ -1,0 +1,13 @@
+{
+	"config": {
+		"vendor-dir": "vendor"
+	},
+	"autoload": {
+		"psr-4": {
+			"": "lib/"
+		},
+		"files": [
+			"resources/Config.php"
+		]
+	}
+}
